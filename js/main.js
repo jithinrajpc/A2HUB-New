@@ -146,10 +146,35 @@
 
     /* var timerdate = "2020/12/30" */
 
-    $("#countdown").countdown(timerdate, function (event) {
-        $(this).html(event.strftime("<div class='cd-item'><span>%D</span> <p>Days</p> </div>" + "<div class='cd-item'><span>%H</span> <p>Hours</p> </div>" + "<div class='cd-item'><span>%M</span> <p>Minutes</p> </div>" + "<div class='cd-item'><span>%S</span> <p>Seconds</p> </div>"));
-    });
-
+    // $("#countdown").countdown(timerdate, function (event) {
+    //     $(this).html(event.strftime("<div class='cd-item'><span>%D</span> <p>Days</p> </div>" + "<div class='cd-item'><span>%H</span> <p>Hours</p> </div>" + "<div class='cd-item'><span>%M</span> <p>Minutes</p> </div>" + "<div class='cd-item'><span>%S</span> <p>Seconds</p> </div>"));
+    // });
+    function getLastDayOfMonth(year, month) {
+        return new Date(year, month + 1, 0, 23, 59, 59); // Last day at 23:59:59
+    }
+    
+    function startMonthlyCountdown() {
+        const now = new Date();
+        let endOfMonth = getLastDayOfMonth(now.getFullYear(), now.getMonth());
+    
+        $('#countdown').countdown(endOfMonth, function (event) {
+            $(this).html(event.strftime(
+                "<div class='cd-item'><span>%D</span> <p>Days</p> </div>" +
+                "<div class='cd-item'><span>%H</span> <p>Hours</p> </div>" +
+                "<div class='cd-item'><span>%M</span> <p>Minutes</p> </div>" +
+                "<div class='cd-item'><span>%S</span> <p>Seconds</p> </div>"
+            ));
+        }).on('finish.countdown', function () {
+            // Restart the countdown with the last date of the next month
+            const next = new Date();
+            const nextMonth = getLastDayOfMonth(next.getFullYear(), next.getMonth() + 1);
+            startMonthlyCountdown(); // Recursive call to restart
+        });
+    }
+    
+    // Start the first countdown
+    startMonthlyCountdown();
+    
     /*------------------
 		Magnific
 	--------------------*/
@@ -214,3 +239,6 @@
     });
 
 })(jQuery);
+
+
+

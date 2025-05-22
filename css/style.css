@@ -106,6 +106,25 @@ ol {
 	margin: 0;
 }
 
+/* .logo-img style */
+.logo-img {
+	max-width: 130px;
+	height: auto;
+  }
+  
+  /* Optional: Adjust size for smaller screens */
+  @media (max-width: 768px) {
+	.logo-img {
+	  max-width: 100px;
+	}
+  }
+  
+  @media (max-width: 480px) {
+	.logo-img {
+	  max-width: 80px;
+	}
+  }
+  
 /*---------------------
   Helper CSS
 -----------------------*/
