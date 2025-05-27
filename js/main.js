@@ -241,4 +241,25 @@
 })(jQuery);
 
 
+document.addEventListener('DOMContentLoaded', function () {
+    const buttons = document.querySelectorAll('.add-cart');
 
+    buttons.forEach(function (button) {
+      button.addEventListener('click', function (e) {
+        e.preventDefault();
+
+        // Find parent product container
+        const productText = button.closest('.product__item__text');
+        if (!productText) return;
+
+        const name = productText.querySelector('.product-name')?.innerText.trim();
+        const price = productText.querySelector('.product-price')?.innerText.replace(/[^\d.]/g, ''); // ₹740.48 → 740.48
+
+        const phone = '919876543210'; // Replace with your WhatsApp number
+        const message = `Hi, I'm interested in buying ${name} for ₹${price}`;
+        const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+        window.open(url, '_blank');
+      });
+    });
+  });

@@ -4002,3 +4002,16 @@ ol {
 .testimony-section .owl-dot.active {
   background: #dbcc8f;
 }
+
+
+
+
+
+
+
+.last-banner-img {
+	width: 100%;
+	max-height: 500px; 
+	object-fit: cover; 
+  }
+  
