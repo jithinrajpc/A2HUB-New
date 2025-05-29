@@ -97,7 +97,7 @@ a:hover,
 a:focus {
 	text-decoration: none;
 	outline: none;
-	color: #ffffff;
+	color: #c7ff46;
 }
 
 ul,
@@ -182,7 +182,7 @@ ol {
 	font-weight: 700;
 	text-transform: uppercase;
 	padding: 14px 30px;
-	color: #ffffff;
+	color: #a6ff00;
 	background: #000000;
 	letter-spacing: 4px;
 }
@@ -4015,3 +4015,18 @@ ol {
 	object-fit: cover; 
   }
   
+  a i {
+    font-size: 20px;
+    color: #333;
+    margin-right: 10px;
+    transition: color 0.3s;
+  }
+
+  a:hover i.fa-instagram { color: #c91f60; }
+  a:hover i.fa-whatsapp  { color: #00ad40; }
+  a:hover i.fa-facebook  { color: #0051ff; }  
+ 
+  ::selection {
+	background: #c7ff46; 
+	color: #000;          
+  }
