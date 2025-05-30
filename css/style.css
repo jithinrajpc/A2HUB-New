@@ -4024,7 +4024,7 @@ ol {
 
   a:hover i.fa-instagram { color: #c91f60; }
   a:hover i.fa-whatsapp  { color: #00ad40; }
-  a:hover i.fa-facebook  { color: #0051ff; }  
+  a:hover i.fa-phone  { color: #0051ff; }  
  
   ::selection {
 	background: #c7ff46; 
