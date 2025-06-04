@@ -269,7 +269,7 @@ document.addEventListener('DOMContentLoaded', function () {
  // Live search in shop
   const searchInput = document.getElementById("searchInput");
   const clearBtn = document.getElementById("clearSearch");
-  const productCards1 = document.querySelectorAll(".col-lg-4");
+  const productCards = document.querySelectorAll(".col-lg-4");
   const noResultsMessage = document.getElementById("noResults");
 
   searchInput.addEventListener("input", function () {
