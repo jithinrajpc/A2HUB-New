@@ -4030,3 +4030,19 @@ ol {
 	background: #c7ff46; 
 	color: #000;          
   }
+
+  
+  #paginationControls button {
+    padding: 8px 16px;
+    background-color: #222;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin: 0 5px;
+    border-radius: 4px;
+  }
+
+  #paginationControls button:disabled {
+    background-color: #aaa;
+    cursor: default;
+  }

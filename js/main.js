@@ -255,7 +255,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const name = productText.querySelector('.product-name')?.innerText.trim();
         const price = productText.querySelector('.product-price')?.innerText.replace(/[^\d.]/g, ''); // ₹740.48 → 740.48
 
-        const phone = '919876543210'; // Replace with your WhatsApp number
+        const phone = '919207889321'; 
         const message = `Hi, I'm interested in buying ${name} for ₹${price}`;
         const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
@@ -263,3 +263,96 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   });
+
+
+
+ // Live search in shop
+  const searchInput = document.getElementById("searchInput");
+  const clearBtn = document.getElementById("clearSearch");
+  const productCards1 = document.querySelectorAll(".col-lg-4");
+  const noResultsMessage = document.getElementById("noResults");
+
+  searchInput.addEventListener("input", function () {
+    const keyword = searchInput.value.trim().toLowerCase();
+    let matchFound = false;
+
+    productCards.forEach(card => {
+      const nameEl = card.querySelector(".product-name");
+      if (!nameEl) return;
+
+      const productName = nameEl.textContent.toLowerCase();
+
+      if (productName.includes(keyword)) {
+        card.style.display = "block";
+        matchFound = true;
+      } else {
+        card.style.display = "none";
+      }
+    });
+
+    // Show/hide no-results message
+    noResultsMessage.style.display = matchFound ? "none" : "block";
+  });
+
+  // Clear search
+  clearBtn.addEventListener("click", function () {
+    searchInput.value = "";
+    productCards.forEach(card => {
+      card.style.display = "block";
+    });
+    noResultsMessage.style.display = "none";
+  });
+
+
+
+
+// product pagination in shop
+
+  const productsPerPage = 6;
+  const allProductCards = document.querySelectorAll("#productList .col-lg-4");
+  const totalProducts = allProductCards.length;
+  const totalPages = Math.ceil(totalProducts / productsPerPage);
+
+  let currentPage = 1;
+
+  const prevBtn = document.getElementById("prevPage");
+  const nextBtn = document.getElementById("nextPage");
+  const pageIndicator = document.getElementById("pageIndicator");
+
+  function showPage(page) {
+    // Hide all products
+    allProductCards.forEach((card) => {
+      card.style.display = "none";
+    });
+
+    const start = (page - 1) * productsPerPage;
+    const end = start + productsPerPage;
+
+    allProductCards.forEach((card, index) => {
+      if (index >= start && index < end) {
+        card.style.display = "block";
+      }
+    });
+
+    // Update pagination UI
+    pageIndicator.textContent = `Page ${page} of ${totalPages}`;
+    prevBtn.disabled = page === 1;
+    nextBtn.disabled = page === totalPages;
+  }
+
+  prevBtn.addEventListener("click", () => {
+    if (currentPage > 1) {
+      currentPage--;
+      showPage(currentPage);
+    }
+  });
+
+  nextBtn.addEventListener("click", () => {
+    if (currentPage < totalPages) {
+      currentPage++;
+      showPage(currentPage);
+    }
+  });
+
+  // Initialize pagination on first load
+  showPage(currentPage);
